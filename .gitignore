@@ -1,2 +1,6 @@
 node_modules/
+<<<<<<< HEAD
 uploads/*
+=======
+*env*
+>>>>>>> dd7f1f8 (Configuracao de gitignore)
