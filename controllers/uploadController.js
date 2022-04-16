@@ -10,11 +10,11 @@ const uploadController = () => {
         upload = multer({
             storage: fileUpload.files.storage(), 
             fileFilter: fileUpload.files.allowedFile 
-            }).single('filepond');
+        }).single('filepond');
 
         upload(req, res, (err) => {
             if (err) {
-                return res.render('error');
+                return res.render('error',{error: err});
              }
             return res.render('index');
              
