@@ -13,10 +13,15 @@ const uploadController = () => {
         }).single('filepond');
 
         upload(req, res, (err) => {
+            let message = '';
             if (err) {
-                return res.render('error',{error: err});
+                message = err;
+             } else{
+                 message = 'Arquivo aceito!';
              }
-            return res.render('index');
+            req.file?
+                console.log(`Nome do arquivo: ${req.file.originalname}\nTamanho: ${req.file.size}B`) : ''
+            return res.render('index',{message: message});
              
         });
     }
