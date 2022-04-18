@@ -1,7 +1,8 @@
 const router = require('express').Router(),
-uploadController = require('../controllers/uploadController')();
+csvStreamReader= require('../helpers/csvStreamReader'); 
+uploadController = require('../controllers/uploadController')(csvStreamReader);
 
-router.get('/', uploadController.uploadForm);
+router.get('/', uploadController.uploadFormView);
 router.post('/', uploadController.uploadHandler);
 
 module.exports = router;
