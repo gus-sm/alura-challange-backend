@@ -1,5 +1,7 @@
-var multer  = require('multer');
-var fileUpload= require('../middleware/uploadMiddleware');
+const multer  = require('multer'),
+fileUpload= require('../middleware/uploadMiddleware'),
+config = require('../config/config');
+
 
 const uploadController = () => {
     function uploadForm(req, res){
@@ -17,7 +19,7 @@ const uploadController = () => {
             if (err) {
                 message = err;
              } else{
-                 message = 'Arquivo aceito!';
+                 message = config.SUCCESS_UPLOAD_MESSAGE;
              }
             req.file?
                 console.log(`Nome do arquivo: ${req.file.originalname}\nTamanho: ${req.file.size}B`) : ''

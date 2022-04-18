@@ -1,9 +1,10 @@
-var multer = require('multer');
+const multer = require('multer'),
+config = require('../config/config');
 
 module.exports.files = {
     storage: function () {
-        var storage = multer.diskStorage({
-            destination: function (req, file, cb) {
+        const storage = multer.diskStorage({
+            destination: function (_, _, cb) {
                 cb(null, './uploads/');
             },
             filename: function (req, file, cb) {
@@ -13,9 +14,9 @@ module.exports.files = {
 
         return storage;
     },
-    allowedFile: function (req, file, cb) {
+    allowedFile: function (_, file, cb) {
         if (!file.originalname.match(/\.(csv)$/)) {
-            return cb(new Error("Somente arquivos CSV são aceitos!"));
+            return cb(new Error(config.NOT_ACCEPTED_ERROR));
         }
         cb(null, true);
     }
