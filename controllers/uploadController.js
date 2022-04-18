@@ -1,32 +1,47 @@
-var multer  = require('multer');
-var fileUpload= require('../middleware/uploadMiddleware');
+const multer  = require('multer'),
 
-const uploadController = () => {
-    function uploadForm(req, res){
-        res.render('index');
+fileUpload = require('../middleware/uploadMiddleware'),
+
+config = require('../config/config');
+
+
+const uploadController = (csvStreamReader) => {
+    let message = '';
+    function uploadFormView(req, res){
+        res.status(200).render('index');
     }
 
+
     function uploadHandler(req, res){
-        upload = multer({
+        
+        const upload = multer({
             storage: fileUpload.files.storage(), 
             fileFilter: fileUpload.files.allowedFile 
         }).single('filepond');
 
         upload(req, res, (err) => {
-            let message = '';
             if (err) {
                 message = err;
-             } else{
-                 message = 'Arquivo aceito!';
-             }
-            req.file?
-                console.log(`Nome do arquivo: ${req.file.originalname}\nTamanho: ${req.file.size}B`) : ''
-            return res.render('index',{message: message});
-             
+                return res.status(400).render('index',{message: message, error: true});
+            }
+            if(!req.file){
+                message = config.NO_FILE_ERROR;
+                return res.status(400).render('index',{message: message, error: true});
+            }
+
+            message = config.SUCCESS_UPLOAD_MESSAGE;
+
+
+            csvStreamReader(req.file.path,function(data){
+                console.log(data);
+            });
+
+            return res.status(200).render('index',{message: message});
+
         });
     }
 
-    return {uploadForm, uploadHandler};
+    return {uploadFormView, uploadHandler};
 }
 
 module.exports = uploadController;
