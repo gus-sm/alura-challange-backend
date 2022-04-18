@@ -1,4 +1,4 @@
-var multer = require('multer');
+const multer = require('multer');
 
 module.exports.files = {
     storage: function () {
@@ -15,7 +15,7 @@ module.exports.files = {
     },
     allowedFile: function (req, file, cb) {
         if (!file.originalname.match(/\.(csv)$/)) {
-            return cb(new Error("Somente arquivos CSV são aceitos!"));
+            return cb(new Error("Apenas arquivos CSV são aceitos!"));
         }
         cb(null, true);
     }

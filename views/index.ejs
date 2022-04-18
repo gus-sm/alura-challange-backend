@@ -8,7 +8,11 @@
 </div>
 <% if (locals.message) { %>
 <div class="d-flex justify-content-center mt-5 row">
-    <%=message%>
+    <%if (locals.error) { %>
+        <p class="text-danger"><%=message%></p>
+    <% } else { %>
+        <p class="text-primary"><%=message%></p>
+    <% } %>
 </div>
 <% } %>
 
