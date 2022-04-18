@@ -1,9 +1,0 @@
-version: '3'
-services:
-  standalone:
-    image: mongo:latest
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=alura-challange-3
-      - MONGO_INITDB_ROOT_PASSWORD=135790
