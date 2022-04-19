@@ -6,6 +6,8 @@ services:
     ports:
       - 27017:27017
     environment:
-      - MONGO_INITDB_ROOT_USERNAME:alura-challange-3
-      - MONGO_INITDB_ROOT_PASSWORD:135790
-      - MONGO_INITDB_DATABASE:Transactions
+      - MONGO_INITDB_ROOT_USERNAME=alurachallange
+      - MONGO_INITDB_ROOT_PASSWORD=135790
+      - MONGO_INITDB_DATABASE=Transactions
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
