@@ -1,12 +1,13 @@
 const multer  = require('multer'),
-
 fileUpload = require('../middleware/uploadMiddleware'),
-
 config = require('../config/config');
 
+const uploadController = (csvStreamReader, Connection) => {
+    let message = '',
 
-const uploadController = (csvStreamReader) => {
-    let message = '';
+    dbConnection = Connection.openConnection();
+    dbConnection.getDbConn();
+
     function uploadFormView(req, res){
         res.status(200).render('index');
     }
