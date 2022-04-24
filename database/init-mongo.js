@@ -4,7 +4,7 @@ db.createUser({
     roles:[
         {
             role: "readWrite",
-            db: "Transactions"
+            db: "alura-challange-db"
         }
     ] 
 })

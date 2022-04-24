@@ -14,7 +14,7 @@ const Connection = () => {
     async function openConnection(){
 
         try {
-            await mongoose.connect('mongodb://alurachallange:135790@localhost:27017/Transactions');
+            await mongoose.connect('mongodb://alurachallange:135790@localhost:27017/alura-challange-db');
         
         } catch (err){
             throw new Error(err);
@@ -30,12 +30,8 @@ const Connection = () => {
             throw new Error(err);
         }
     }
-
-    function getDbConn(){
-        return db;
-    }
     
-    return {openConnection,closeConnection,getDbConn};
+    return {openConnection, closeConnection};
 }
 
-module.exports = { Connection };
+module.exports = Connection;

@@ -1,10 +1,10 @@
 const router = require('express').Router(),
-csvStreamReader= require('../helpers/csvStreamReader'),
-Connection  = require('../config/dbConnection')();
+      csvStreamReader= require('../helpers/csvStreamReader'),
+      Connection  = require('../database/dbConnection')(),
+      Upload = require('../controllers/Upload')(),
+      Transaction = require('../controllers/Transactions')(csvStreamReader, Connection);
 
-uploadController = require('../controllers/uploadController')(csvStreamReader, Connection);
-
-router.get('/', uploadController.uploadFormView);
-router.post('/', uploadController.uploadHandler);
+router.get('/', Transaction.listTransactions);
+router.post('/upload', Upload.uploadHandler, Transaction.createTransaction);
 
 module.exports = router;
