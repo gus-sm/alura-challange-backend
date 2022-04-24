@@ -1,5 +1,6 @@
-const uploadRoute = require('./uploadRoute');
+const uploadRoute = require('./uploadRoute'),
+userRegistration = require('./userRegistration');
 
 module.exports = (app) =>{
-    app.use(uploadRoute);
+    app.use(uploadRoute, userRegistration);
 }
