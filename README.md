@@ -1,5 +1,5 @@
 # alura-challange-backend
-> Terceira edição do Challange back-end (Alura)
+> Terceira edição do Challange back-end (Alura) #alurachallengebackend3
 
 ## Instruções para executar:
   1. ```npm install``` para a instalação das dependências;
