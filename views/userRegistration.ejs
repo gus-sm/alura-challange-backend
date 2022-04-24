@@ -1,0 +1,38 @@
+
+<%- include('./templates/header.ejs'); %>
+<div class="d-flex justify-content-center mt-5 row">
+    
+    <form action="/cadastro" method="post">
+
+        <div class="mt-5 row">
+            <label class="mr-2">Nome</label>
+            <input type="text" class="w-100" name="name">
+        </div>
+
+        <div class="mt-5 row">
+            <label class="mr-2">E-mail</label>
+            <input type="text" class="w-100" name="email">
+        </div>
+        <div class="mt-5 row">
+            <input type="submit" value="Cadastrar" class="btn btn-primary">
+        </div>
+
+        <% if (locals.password){ %> 
+            <p><%=password%></p>
+        <% } %>
+
+    </form>
+</div>
+<div class="d-flex justify-content-center mt-5 row">
+    <% if (locals.error && locals.message){ %> 
+      <p class="text-danger"><%=message%></p>
+
+    <% } %>
+    <% if (!locals.error && locals.message) { %>
+      <p class="text-primary"><%=message%></p>
+    <% }%>
+
+</div>
+
+</body>
+</html>
