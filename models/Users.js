@@ -10,6 +10,6 @@ const UserSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const Users = mongoose.model('Transactions', TransactionSchema);
+const Users = mongoose.model('Users', UserSchema);
 
-module.exports = { Users };
+module.exports = Users;
