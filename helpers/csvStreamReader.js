@@ -1,16 +1,15 @@
-const { parse } = require('csv-parse');
-fs = require('fs');
+const { parse } = require('csv-parse'),
+fs = require('fs'),
+getStream = require('get-stream');
 
-const csvStreamReader = (filePath, callback) => {
-    let data = [];
-    const csv = fs.createReadStream(filePath);
-    csv.pipe(parse({delimiter: ';'}))
-    .on('data', function(row){
-        data.push(row);
-    })
-    .on('end',function(){
-        callback(data);
-    });
+const csvStreamReader = (filePath) => {
+
+    async function read(){
+        const csv = fs.createReadStream(filePath);
+        return await getStream.array(csv.pipe(parse({delimiter: ','})));
+    }
+
+    return {read};
 
 }
 

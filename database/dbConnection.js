@@ -30,12 +30,8 @@ const Connection = () => {
             throw new Error(err);
         }
     }
-
-    function getDbConn(){
-        return db;
-    }
     
-    return {openConnection, closeConnection, getDbConn};
+    return {openConnection, closeConnection};
 }
 
-module.exports = { Connection };
+module.exports = Connection;
