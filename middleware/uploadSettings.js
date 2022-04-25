@@ -1,6 +1,6 @@
 const multer = require('multer');
 
-config = require('../config/config');
+config = require('../config/AppMessages');
 
 
 module.exports.files = {
