@@ -1,11 +1,11 @@
 const TransactionModel = require('../models/Transactions'),
-config = require('../config/config');
+config = require('../config/AppMessages');
 
 const Transactions = (csvStreamReader, Connection) => {
 
     async function createTransaction(req, res) {
         try {
-
+            await Connection.openConnection();
             const csv = csvStreamReader(req.file.path),
             csvData = await csv.read();
             
@@ -17,8 +17,6 @@ const Transactions = (csvStreamReader, Connection) => {
             if((await queryTransactions({dtTransac: currentTransactionDate})).length > 0){
                 return res.status(400).render('index', {message: config.ALREADY_IMPORTED_ERROR, error: true});
             }
-
-            await Connection.openConnection();
 
             for(let i=0; i<csvData.length; i++){
                 let line = csvData[i];
@@ -40,6 +38,7 @@ const Transactions = (csvStreamReader, Connection) => {
                 const transactionRegistry = new TransactionModel(transactionAttr);
     
                 await transactionRegistry.save();
+                await Connection.closeConnection();
 
             }
 
@@ -52,10 +51,7 @@ const Transactions = (csvStreamReader, Connection) => {
 
     async function queryTransactions(condition = {}){
         try{
-            await Connection.openConnection();
-            let rows = await TransactionModel.find(condition).exec();
-            await Connection.closeConnection();
-            return rows;
+            return await TransactionModel.find(condition).exec();
 
         } catch(err){
             throw new Error(err);
@@ -65,7 +61,9 @@ const Transactions = (csvStreamReader, Connection) => {
 
     async function listTransactions(_, res) {
         try{
-            let transactionRows = await queryTransactions();
+            await Connection.openConnection();
+            const transactionRows = await queryTransactions();
+            await Connection.closeConnection();
             return res.status(200).render('index', {transactions: transactionRows});
 
         } catch(err){

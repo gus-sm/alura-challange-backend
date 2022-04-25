@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const TransactionSchema = new mongoose.Schema(
     {
         id: {type: String},
-        bcOrigem: {type: String},
-        agOrigem: {type: String},
-        contOrigem: {type: String},
-        bcDest: {type: String},
-        agDest: {type: String},
-        contDest: {type: String},
-        valTransac: {type: Number},
-        dtTransac: {type: Date}
+        bcOrigem: {type: String, required: true},
+        agOrigem: {type: String, required: true},
+        contOrigem: {type: String, required: true},
+        bcDest: {type: String, required: true},
+        agDest: {type: String, required: true},
+        contDest: {type: String, required: true},
+        valTransac: {type: Number, required: true},
+        dtTransac: {type: Date, required: true}
     },
     { timestamps: true }
 );
