@@ -1,6 +1,7 @@
 # alura-challange-backend
-> Terceira edição do Challange back-end (Alura) #alurachallengebackend3
 Aplicação em MVC para análise de transações financeiras.
+> Terceira edição do Challange back-end (Alura) #alurachallengebackend3
+
 ## Instruções para executar:
   > Para executar esse projeto, será necessário instalar o Docker compose (https://docs.docker.com/compose/install/);
   1. ```docker-compose up -d```;
