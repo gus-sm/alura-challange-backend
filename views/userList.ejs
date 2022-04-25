@@ -1,0 +1,61 @@
+
+<%- include('./templates/header.ejs'); %>
+
+
+
+<div class="d-flex justify-content-center mt-5 row">
+
+  <% if (locals.users) { %>
+    <table class="table table-bordered mt-5 mx-auto w-50">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i<locals.users.length; i++){ %>
+                    <tr>
+                        <td><%=users[i]._id%></td>
+                        <td><%=users[i].name%></td>
+                        <td><%=users[i].email%></td>
+                        <td>
+                            <div class = "row mx-auto">
+
+                                <form class = "mr-3" action="/usuarios/<%=users[i]._id%>" method = "GET">
+                                    <button type="submit" class="btn btn-light">Editar</button>
+                                </form>
+            
+                                <form action="/usuarios" method="post">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <input type="hidden" name="id" value="<%=users[i]._id%>"/>
+                                    <button type="submit" class="btn btn-danger">Deletar</button>
+                                </form> 
+
+                            </div>
+
+                        </td>
+                    </tr>
+            <% } %>
+        </tbody>
+    </table>
+  <% } %>
+  <div class="d-flex justify-content-center mt-5 row">
+    <% if (locals.error && locals.message){ %> 
+      <p class="text-danger"><%=message%></p>
+
+    <% } %>
+    <% if (!locals.error && locals.message) { %>
+      <p class="text-primary"><%=message%></p>
+    <% }%>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-5 row">
+  <a href="/cadastro" class="btn btn-light">Cadastrar novo usuário</a>
+</div>
+
+</body>
+</html>

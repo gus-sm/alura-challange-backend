@@ -2,7 +2,7 @@
 <%- include('./templates/header.ejs'); %>
 <div class="d-flex justify-content-center mt-5 row">
     
-    <form action="/cadastro" method="post">
+    <form action="/cadastro" method="POST">
 
         <div class="mt-5 row">
             <label class="mr-2">Nome</label>
@@ -13,13 +13,11 @@
             <label class="mr-2">E-mail</label>
             <input type="text" class="w-100" name="email">
         </div>
-        <div class="mt-5 row">
-            <input type="submit" value="Cadastrar" class="btn btn-primary">
-        </div>
 
-        <% if (locals.password){ %> 
-            <p><%=password%></p>
-        <% } %>
+        <div class="mt-5 row">
+            <button type="submit" class="btn btn-primary mr-3">Cadastrar</button>
+            <a href="/usuarios" class="btn btn-secondary">Voltar</a>
+        </div>
 
     </form>
 </div>
