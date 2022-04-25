@@ -1,0 +1,41 @@
+
+<%- include('./templates/header.ejs'); %>
+
+    <div class="d-flex justify-content-center mt-5 row">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" id="filepond" class="border" name="filepond">
+            <input type="submit" value="Importar" class="btn btn-primary">
+        </form>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5 row">
+        <% if (locals.error && locals.message){ %> 
+          <p class="text-danger"><%=message%></p>
+  
+        <% } %>
+        <% if (!locals.error && locals.message) { %>
+          <p class="text-primary"><%=message%></p>
+        <% }%>
+
+    </div>
+    <% if (locals.transactions) { %>
+        <table class="table table-bordered mx-auto w-50">
+            <thead>
+              <tr>
+                <th scope="col">Data transações</th>
+                <th scope="col">Data importação</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i<locals.transactions.length; i++) {%>
+                  <tr>
+                    <td><%=(transactions[i].dtTransac).toLocaleDateString() %></th>
+                    <td><%=(transactions[i].createdAt).toLocaleDateString() %></td>
+                  </tr>
+                <% } %>
+            </tbody>
+        </table>
+      <% } %>
+
+</body>
+</html>
