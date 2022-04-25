@@ -1,6 +1,6 @@
 const multer  = require('multer'),
 fileUpload = require('../middleware/uploadSettings'),
-config = require('../config/config');
+config = require('../config/AppMessages');
 
 const Upload = () => {
     let message = '';

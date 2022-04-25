@@ -1,6 +1,6 @@
 const router = require('express').Router(),
-      csvStreamReader= require('../helpers/csvStreamReader'),
-      Connection  = require('../database/dbConnection')(),
+csvStreamReader= require('../helpers/csvStreamReader'),
+Connection  = require('../config/database/dbConnection')(),
 
 Upload = require('../controllers/Uploads')(),
 Transaction = require('../controllers/Transactions')(csvStreamReader, Connection);

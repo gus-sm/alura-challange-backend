@@ -1,6 +1,8 @@
 const uploadRoute = require('./uploadRoute'),
-userRegistration = require('./userRegistration');
+userRegistration = require('./userRegistrationRoute'),
+userList = require('./userListRoute'),
+userEdit = require('./userEditRoute');
 
 module.exports = (app) =>{
-    app.use(uploadRoute, userRegistration);
+    app.use(uploadRoute, userRegistration, userList, userEdit);
 }
